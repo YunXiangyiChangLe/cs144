@@ -16,3 +16,11 @@ uint64_t Reassembler::bytes_pending() const
   // Your code here.
   return {};
 }
+
+void Reassembler::store( uint64_t, std::string ) {}
+
+void Reassembler::preprocess( uint64_t&, std::string&, Writer& ) {
+  
+}
+
+void Reassembler::merge(uint64_t &,std::string &,uint64_t,std::string){};
