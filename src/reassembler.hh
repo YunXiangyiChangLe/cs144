@@ -2,8 +2,8 @@
 
 #include "byte_stream.hh"
 
+#include <map>
 #include <string>
-#include<map>
 class Reassembler
 {
 public:
@@ -31,13 +31,13 @@ public:
 
   // How many bytes are stored in the Reassembler itself?
   uint64_t bytes_pending() const;
+
 private:
-  uint64_t nxt_indx=0;
-  uint64_t eof_indx=0;
-  std::map<uint64_t,std::string>buf{};
-  uint64_t unassembled_bytes=0;
-  bool end_check=false;
-  void store(uint64_t,std::string);
-  void merge(uint64_t &,std::string &,uint64_t,std::string);
-  void preprocess(uint64_t &,std::string &,Writer&);
+  uint64_t next_index = 0;
+  uint64_t eof_index = 0;
+  std::map<uint64_t, std::string> unorder_buf {};
+  uint64_t unorder_bytes_size = 0;
+  bool byte_stream_end = false;
+  void process_substr( uint64_t& first_index, std::string& data, Writer& output );
+  void remove_overlap( uint64_t& first_index, std::string& data );
 };
